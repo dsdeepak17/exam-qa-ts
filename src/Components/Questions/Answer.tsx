@@ -40,9 +40,9 @@ function Answer(props: any) {
 	// 	}
 	// };
 
-	React.useEffect(() => {
-		console.log({ answers });
-	}, [answers]);
+	// React.useEffect(() => {
+	// 	console.log({ answers });
+	// }, [answers]);
 
 	if (qtype === QuestionType.RADIO) {
 		return (

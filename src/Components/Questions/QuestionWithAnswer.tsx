@@ -22,7 +22,7 @@ function QuestionWithAnswer() {
 
 	const onAnswerChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
 		const { value } = e.target;
-		console.log(value);
+		// console.log(value);
 		if (qtype === QuestionType.RADIO) {
 			setAnswer({ answerRadio: value });
 		}
@@ -43,34 +43,30 @@ function QuestionWithAnswer() {
 		}
 	};
 
+	const setFinalAnswers = () => {
+		let newAnswers;
+		if (answers.length >= currentQuestion) {
+			newAnswers = [...answers];
+			newAnswers.splice(currentQuestion - 1, 1, { key: currentQuestion, value: answer });
+		} else {
+			newAnswers = [...answers, { key: currentQuestion, value: answer }];
+		}
+		setAnswers!(newAnswers);
+	};
+
 	const handleQuestionNavigation = (que: string) => {
 		if (que === "previous" && currentQuestion >= 1) {
+			setFinalAnswers();
 			setCurrentQuestion!(currentQuestion - 1);
-			let newAnswers;
-			if (answers.length >= currentQuestion) {
-				newAnswers = [...answers];
-				newAnswers.splice(currentQuestion - 1, 1, { key: currentQuestion, value: answer });
-			} else {
-				newAnswers = [...answers, { key: currentQuestion, value: answer }];
-			}
-			setAnswers!(newAnswers);
 		}
 		if (que === "next" && currentQuestion < Questions.questions.length) {
-			let newAnswers;
-			if (answers.length >= currentQuestion) {
-				newAnswers = [...answers];
-				newAnswers.splice(currentQuestion - 1, 1, { key: currentQuestion, value: answer });
-			} else {
-				newAnswers = [...answers, { key: currentQuestion, value: answer }];
-			}
-			setAnswers!(newAnswers);
+			setFinalAnswers();
 			setCurrentQuestion!(currentQuestion + 1);
 		}
 	};
 
 	const finalSubmit = () => {
-		const newAnswers = [...answers, { key: currentQuestion, value: answer }];
-		setAnswers!(newAnswers);
+		setFinalAnswers();
 		setQuizEnd(true);
 	};
 
