@@ -25,11 +25,20 @@
 .heading {
   color: var(--dark-color);
   text-align: center;
+  background-color: #2D936C71;
+  margin-bottom: 10px;
+  border-radius: 2px;
 }
 
 .quiz-container{
   width: min(660px, 86%);
-  margin: auto;
+  margin: 10px auto;
+}
+.question-text{
+  margin: 2px 0px;
+}
+.question-num{
+  text-decoration: underline;
 }
 
 .primary-btn{
@@ -55,12 +64,13 @@
 }
 
 .option-value{
-  margin: 2px 10px;
+  margin: 5px 20px;
+  padding: 3px 7px;
+  accent-color: var(--primary-color);
 }
 .option-label{
   margin: 0px 6px;
 }
-
 .final-submit{
   display: flex;
   margin: 20px auto;

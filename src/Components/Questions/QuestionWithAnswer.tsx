@@ -54,12 +54,12 @@ function QuestionWithAnswer() {
 		setAnswers!(newAnswers);
 	};
 
-	const handleQuestionNavigation = (que: string) => {
-		if (que === "previous" && currentQuestion >= 1) {
+	const handleQuestionNavigation = (navigation: string) => {
+		if (navigation === "previous" && currentQuestion >= 1) {
 			setFinalAnswers();
 			setCurrentQuestion!(currentQuestion - 1);
 		}
-		if (que === "next" && currentQuestion < Questions.questions.length) {
+		if (navigation === "next" && currentQuestion < Questions.questions.length) {
 			setFinalAnswers();
 			setCurrentQuestion!(currentQuestion + 1);
 		}
@@ -80,7 +80,7 @@ function QuestionWithAnswer() {
 								{currentQuestion > 1 && <Button text="Previous" onClick={() => handleQuestionNavigation("previous")} />}
 								{currentQuestion !== Questions.questions.length && <Button text="Next" onClick={() => handleQuestionNavigation("next")} />}
 							</div>
-							<span>{`Question ${currentQuestion} of ${Questions.questions.length}`}</span>
+							<span className="question-num">{`Question ${currentQuestion} of ${Questions.questions.length}`}</span>
 							<Question text={Questions.questions[currentQuestion - 1].question} />
 							<Answer answer={answer} onAnswerChange={onAnswerChange} />
 							<div className="final-submit">{currentQuestion === Questions.questions.length && <Button onClick={finalSubmit} />}</div>
